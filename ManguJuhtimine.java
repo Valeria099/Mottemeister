@@ -10,6 +10,7 @@ public class ManguJuhtimine {
     private boolean korduvad;
     private boolean positsioonilineTagasiside;
     private List<String> valikuVärvid;
+    private int katseteArv;
 
     public ManguJuhtimine(Mängija mängija, boolean korduvad, boolean positsioonilineTagasiside, int nupuArv) {
         this.mängija = mängija;
@@ -18,6 +19,7 @@ public class ManguJuhtimine {
         this.valikuVärvid = genereeriVärvideValik(nupuArv);
         System.out.println("Valitavad värvid: " + valikuVärvid);
         this.salakood = genereeriSalakood(nupuArv);
+        this.katseteArv = 0;
     }
 
     public List<String> genereeriVärvideValik(int nupuArv) {
@@ -43,14 +45,19 @@ public class ManguJuhtimine {
     }
 
     public String kontrolliKoodi(List<String> pakutudKood) {
+        katseteArv++;
         List<String> salakoodList = salakood.getSalakood();
 
         // Kutsume Tagasiside klassi kontrolliKoodi meetodit, andes kolm argumenti
         String tagasisideKood = Tagasiside.kontrolliKoodi(pakutudKood, salakoodList, positsioonilineTagasiside);
 
         // Prindime tagasiside
-        System.out.println("Tagasiside: " + tagasisideKood);
+        //System.out.println("Tagasiside: " + tagasisideKood);
 
         return tagasisideKood; // Tagasta tagasiside
+    }
+
+    public int getKatseteArv() {
+        return katseteArv; // Getter katsete arvu jaoks
     }
 }
