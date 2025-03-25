@@ -82,12 +82,14 @@ public class Mottemeister {
             }
 
             if (pakutudKood.size() == nupuArv) {
-                Tagasiside tagasiside = mänguJuhtimine.kontrolliKoodi(pakutudKood);
-                System.out.println("Tagasiside: " + tagasiside);
+                // Kontrollime koodi ja saame tagasiside stringi
+                String tagasisideKood = mänguJuhtimine.kontrolliKoodi(pakutudKood);
+                System.out.println("Tagasiside: " + tagasisideKood);
 
-                if (tagasiside.getÕige() == nupuArv) {
+                // Kontrollime, kas kõik nupud on õiged, s.t kõik on "õ"
+                if (tagasisideKood.equals("õ".repeat(nupuArv))) {
                     salakoodArvatud = true; // Mäng lõpetatakse
-                    System.out.println("Palju õnne " + mängija.getNimi() + "! Sa arvasid salakoodi õigesti.");
+                    System.out.println("Palju õnne! Sa arvasid salakoodi õigesti, " + mängija.getNimi() + ".");
                 }
             } else {
                 System.out.println("Sisesta täpselt " + nupuArv + " värvi.");
