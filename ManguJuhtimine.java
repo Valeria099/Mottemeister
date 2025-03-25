@@ -23,9 +23,10 @@ public class ManguJuhtimine {
     public List<String> genereeriVärvideValik(int nupuArv) {
         List<String> kõikVärvid = new ArrayList<>(Arrays.asList("valge", "kollane", "oranž", "beež", "punane", "sinine", "hall", "roheline", "must", "lilla"));
         Collections.shuffle(kõikVärvid); // Juhuslikult segame värvid
-        return kõikVärvid.subList(0, Math.min(nupuArv, kõikVärvid.size())); // Võtke kõige rohkem nupuArv-värvi
+        return kõikVärvid.subList(0, Math.min(nupuArv, kõikVärvid.size())); // Võtke sobiv arv nuppe: NupuArv-värvideArv
     }
 
+    // salakoodi genereerimine kasutades juhusliku arvu genereerimist
     public Salakood genereeriSalakood(int nupuArv) {
         List<String> salakood = new ArrayList<>();
 
@@ -62,7 +63,7 @@ public class ManguJuhtimine {
                 for (int j = 0; j < salakoodList.size(); j++) {
                     // Otsime vale positsiooniga värvi, kui see on salakoodis
                     if (!checkedSalakood[j] && pakutudKood.get(i).equals(salakoodList.get(j))) {
-                        tagasiside.setCharAt(i, 'v'); // Vale värv, vale positsioon
+                        tagasiside.setCharAt(i, 'v'); // Õige värv, vale positsioon
                         vale++;
                         checkedSalakood[j] = true; // Märkige salakood kontrollitud
                         break; // Mine järgmise pakutud nupu juurde
@@ -71,10 +72,10 @@ public class ManguJuhtimine {
             }
         }
 
-        // 3. Positsioonilisest tagasisidest tulemuseks väljund
+        // 3. Positsioonilisest tagasisidest tulemuseks väljund juhul, kui tagastada tuleb järjekorras õiged õigel positsioonil, õiged valel positsioonil ja puuduvad
         if (!positsioonilineTagasiside) {
             StringBuilder järjestatudTagasiside = new StringBuilder();
-            // Loo muutuja, et lugeda, sageli koguseid
+            
             for (int i = 0; i < tagasiside.length(); i++) {
                 char ch = tagasiside.charAt(i);
                 if (ch == 'õ') järjestatudTagasiside.append(ch);
