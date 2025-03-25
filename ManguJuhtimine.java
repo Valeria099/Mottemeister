@@ -42,60 +42,15 @@ public class ManguJuhtimine {
         return new Salakood(salakood);
     }
 
-    public Tagasiside kontrolliKoodi(List<String> pakutudKood) {
-        int õige = 0;
-        int vale = 0;
+    public String kontrolliKoodi(List<String> pakutudKood) {
         List<String> salakoodList = salakood.getSalakood();
-        StringBuilder tagasiside = new StringBuilder("o".repeat(pakutudKood.size())); // Alguses oletame, et kõik on "o"
 
-        // 1. Positsiooniline kontroll
-        for (int i = 0; i < pakutudKood.size(); i++) {
-            if (pakutudKood.get(i).equals(salakoodList.get(i))) {
-                tagasiside.setCharAt(i, 'õ'); // Õige värv ja õige positsioon
-                õige++;
-            }
-        }
-
-        // 2. Kontrollib vale positsiooniga värvide
-        boolean[] checkedSalakood = new boolean[salakoodList.size()];
-        for (int i = 0; i < pakutudKood.size(); i++) {
-            if (tagasiside.charAt(i) != 'õ') { // Ainult need, mis ei olnud m
-                for (int j = 0; j < salakoodList.size(); j++) {
-                    // Otsime vale positsiooniga värvi, kui see on salakoodis
-                    if (!checkedSalakood[j] && pakutudKood.get(i).equals(salakoodList.get(j))) {
-                        tagasiside.setCharAt(i, 'v'); // Õige värv, vale positsioon
-                        vale++;
-                        checkedSalakood[j] = true; // Märkige salakood kontrollitud
-                        break; // Mine järgmise pakutud nupu juurde
-                    }
-                }
-            }
-        }
-
-        // 3. Positsioonilisest tagasisidest tulemuseks väljund juhul, kui tagastada tuleb järjekorras õiged õigel positsioonil, õiged valel positsioonil ja puuduvad
-        if (!positsioonilineTagasiside) {
-            StringBuilder järjestatudTagasiside = new StringBuilder();
-            
-            for (int i = 0; i < tagasiside.length(); i++) {
-                char ch = tagasiside.charAt(i);
-                if (ch == 'õ') järjestatudTagasiside.append(ch);
-            }
-            for (int i = 0; i < tagasiside.length(); i++) {
-                char ch = tagasiside.charAt(i);
-                if (ch == 'v') järjestatudTagasiside.append(ch);
-            }
-            for (int i = 0; i < tagasiside.length(); i++) {
-                char ch = tagasiside.charAt(i);
-                if (ch == 'o') järjestatudTagasiside.append(ch);
-            }
-            tagasiside = järjestatudTagasiside; // Vaheta tagasiside ümber
-        }
+        // Kutsume Tagasiside klassi kontrolliKoodi meetodit, andes kolm argumenti
+        String tagasisideKood = Tagasiside.kontrolliKoodi(pakutudKood, salakoodList, positsioonilineTagasiside);
 
         // Prindime tagasiside
-        String tagasisideString = tagasiside.toString();
-        System.out.println("Tagasiside: " + tagasisideString); // Näita tagasiside
+        System.out.println("Tagasiside: " + tagasisideKood);
 
-        // Tagasta Tagasiside objekt
-        return new Tagasiside(õige, vale, pakutudKood.size() - õige - vale); // Tagasta tagasiside
+        return tagasisideKood; // Tagasta tagasiside
     }
 }
