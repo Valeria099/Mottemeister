@@ -14,12 +14,12 @@ Mängus on nuppude paigutuse osas erineva raskusastmega versioone:
 - on teada suurem hulk värve, mille seast valitakse täpselt nii palju erinevaid värvi nuppe, värv võib korduda.
 
 Kui väljamõtleja on rivi paika saanud, siis teine mängija pakub nuppude värvi ja järjekorra. Tagasiside andmisel on kolm olekut:
-- nn tühi väli, ehk seda värvi nuppu ei ole reas;
-- nn valge, mis tähendab, et värv on küll õige, aga vale koha peal;
-- nn must, mis tähendab, et nupu värv on õige ja ka õige koha peal.
+- nn täiesti vale, ehk seda värvi nuppu ei ole reas;
+- nn vale, mis tähendab, et värv on küll õige, aga vale koha peal;
+- nn õige, mis tähendab, et nupu värv on õige ja ka õige koha peal.
 Mängijale tagasiside andmiseks on kaks versiooni:
 - tagasiside antakse iga nupu kohta eraldi;
-- tagasiside antakse järjekorras x tühja, y valget ja z musta ehk tead, mis tüüpi on info nuppude kohta, kuid ei tea, millise nupu kohta info käib.
+- tagasiside antakse järjekorras x täiesti vale, y vale ja z õige ehk tead, mis tüüpi on info nuppude kohta, kuid ei tea, millise nupu kohta info käib.
 
 Mäng saab läbi, kui nn "Salakood" on ära arvatud.
 
@@ -45,8 +45,8 @@ String kontrolliKoodi(List<String> pakutudKood) - kontrollib, kas pakutud kood v
 *Tagasiside klass*
 Eesmärk: Tagasiside klass vastutab mängija tagasiside andmise ja hindamise eest. See klass loob erinevat tüüpi tagasiside, sõltuvalt sellest, kas tagasiside on positsiooniline või mitte.
 Olulisemad meetodid:
-Tagasiside(int must, int valge, int tühi) - konstruktor, mis määrab mustade, valgete ja tühjade arvu.
-int getMust() / int getValge() / int getTühi() - getter meetodid, mis tagastavad vastava tagasiside tüübi arvu.
+Tagasiside(int õige, int vale, int täiestiVale) - konstruktor, mis määrab õigete, valede ja täiesti valede arvu.
+int getÕige() / int getVale() / int getTäiestiVale() - getter meetodid, mis tagastavad vastava tagasiside tüübi arvu.
 void prindiTagasiside(boolean positsiooniline) - prindib tagasiside vastavalt positsioonilisele või mittepositsioonilisele sümbolite järjestusele.
 static String kontrolliKoodi(List<String> pakutudKood, List<String> salakoodList, boolean positsioonilineTagasiside) - analüüsib pakutud koodi võrreldes salakoodiga ja tagastab vastava tagasiside string.
 
@@ -77,11 +77,10 @@ Kõik etapid said mitmeid kordi omavahel arutatud ja nõu peetud.
 Protsessiliselt Victoria kirjutas põhjad klassidesse ja Anne tegeles peamiselt tagasiside klassi korrektselt tööle saamisega, nii et oleksid võimalikud nii kõikvõimalikud nuppude värvide valikute lahendused kui ka tagasisisde andmise võimalused.
 
 **Ajakulu**
-Ajakulu - Victorial kulus umbkaudu ... tundi, Anne kulutas projektile aega umbes 25h.
+Ajakulu - Victorial kulus umbkaudu 15h, Anne kulutas projektile aega umbes 25h.
 
 **Peamised mured**
-Victoria:
-Anne: Kõige keerukam oli tabada, kuidas kõige efektiivsemalt saada tagasiside tööle mõlema tagasisidestamise variandi korral - nii näidates tagasisidet iga nupu kohta eraldi, ja teisel juhul kui antakse tagasiside, aga mitte näidates, millise nupu kohta tagasiside käib. Samuti osutas vastupanu juhus, kui oli värvide kordusi, et ka siis oskaks kood tagasisidestada mõlemal juhul õigesti.
+Kõige keerukam oli tabada, kuidas kõige efektiivsemalt saada tagasiside tööle mõlema tagasisidestamise variandi korral - nii näidates tagasisidet iga nupu kohta eraldi, ja teisel juhul kui antakse tagasiside, aga mitte näidates, millise nupu kohta tagasiside käib. Samuti osutas vastupanu juhus, kui oli värvide kordusi, et ka siis oskaks kood tagasisidestada mõlemal juhul õigesti.
 
 **Hinnang**
 Koostöö toimis ja programm hakkas tööle nii nagu ootasime. 
