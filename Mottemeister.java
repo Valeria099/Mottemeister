@@ -38,7 +38,7 @@ public class Mottemeister {
         // Alustame mängu
         boolean salakoodArvatud = false;
         while (!salakoodArvatud) {
-            System.out.print("Sisesta värvikood värvide esitähtedest (nt 'vklmh'): ");
+            System.out.print("Sisesta värvikood värvide esitähtedest (nt 'vklmh' on värvivalik valge-kollane-lilla-must-hall): ");
             String kasutajaSisend = scanner.next();
             List<String> pakutudKood = new ArrayList<>();
 
