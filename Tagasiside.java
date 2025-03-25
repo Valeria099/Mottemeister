@@ -1,24 +1,24 @@
 import java.util.List;
 
 public class Tagasiside {
-    private int must;    // Õige värv ja õige positsioon
-    private int valge;   // Õige värv, aga vale positsioon
+    private int õige;    // Õige värv ja õige positsioon
+    private int vale;   // Õige värv, aga vale positsioon
     private int tühi;    // Vale värv
 
     // Konstruktor
-    public Tagasiside(int must, int valge, int tühi) {
-        this.must = must;
-        this.valge = valge;
+    public Tagasiside(int õige, int vale, int tühi) {
+        this.õige = õige;
+        this.vale = vale;
         this.tühi = tühi;
     }
 
     // Getter meetodid
     public int getMust() {
-        return must;
+        return õige;
     }
 
     public int getValge() {
-        return valge;
+        return vale;
     }
 
     public int getTühi() {
@@ -27,7 +27,7 @@ public class Tagasiside {
 
     @Override
     public String toString() {
-        return "Must: " + must + ", Valge: " + valge + ", Tühi: " + tühi;
+        return "Must: " + õige + ", Valge: " + vale + ", Tühi: " + tühi;
     }
 
     public void prindiTagasiside(boolean positsiooniline) {
@@ -35,18 +35,18 @@ public class Tagasiside {
 
         if (positsiooniline) {
             // Positiivne tagasiside
-            for (int i = 0; i < must; i++) {
+            for (int i = 0; i < õige; i++) {
                 tagasiside.append("õ"); // 'm' musta (õige värv, õige positsioon) jaoks
             }
-            for (int i = 0; i < valge; i++) {
+            for (int i = 0; i < vale; i++) {
                 tagasiside.append("v"); // 'v' valge (õige värv, vale positsioon) jaoks
             }
         } else {
             // Mittepositsiooniline tagasiside
-            for (int i = 0; i < must; i++) {
+            for (int i = 0; i < õige; i++) {
                 tagasiside.append("õ"); // 'm' musta (õige värv, õige positsioon) jaoks
             }
-            for (int i = 0; i < valge; i++) {
+            for (int i = 0; i < vale; i++) {
                 tagasiside.append("v"); // 'v' valge (õige värv, vale positsioon) jaoks
             }
             for (int i = 0; i < tühi; i++) {
