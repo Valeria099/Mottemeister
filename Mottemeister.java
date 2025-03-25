@@ -1,4 +1,3 @@
-// Peaklass
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +7,10 @@ public class Mottemeister {
         System.out.println("Mõttemeister – Kuidas mängida?\n" +
                 "Arva ära vastase värvikood võimalikult väheste katsetega!\n" +
                 "Jätka pakkumist, kuni leiad õige koodi!" +
+                "\n"+
+                "Tagasiside korral 'õ' - õige värv ja õiges kohas\n"+
+                "                  'v' - õige värv, aga vales kohas\n"+
+                "                  't' - vale värvi nupp!+" +
                 "\n");
         Scanner scanner = new Scanner(System.in);
 
@@ -38,7 +41,7 @@ public class Mottemeister {
         // Alustame mängu
         boolean salakoodArvatud = false;
         while (!salakoodArvatud) {
-            System.out.print("Sisesta värvikood värvide esitähtedest (nt 'vklmh' on värvivalik valge-kollane-lilla-must-hall): ");
+            System.out.print("Sisesta värvikood värvide esitähtedest (nt 'vklmh'): ");
             String kasutajaSisend = scanner.next();
             List<String> pakutudKood = new ArrayList<>();
 
@@ -85,7 +88,7 @@ public class Mottemeister {
                 // Kontrollime koodi ja saame tagasiside stringi
                 String tagasisideKood = mänguJuhtimine.kontrolliKoodi(pakutudKood);
                 System.out.println("Tagasiside: " + tagasisideKood);
-
+                System.out.println("Katsed: " + mänguJuhtimine.getKatseteArv());
                 // Kontrollime, kas kõik nupud on õiged, s.t kõik on "õ"
                 if (tagasisideKood.equals("õ".repeat(nupuArv))) {
                     salakoodArvatud = true; // Mäng lõpetatakse
@@ -95,6 +98,9 @@ public class Mottemeister {
                 System.out.println("Sisesta täpselt " + nupuArv + " värvi.");
             }
         }
+
         scanner.close();
     }
+
 }
+
