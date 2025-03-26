@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Mottemeister {
+public class Mottemeister1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
