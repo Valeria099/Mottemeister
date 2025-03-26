@@ -13,11 +13,11 @@ public class Tagasiside {
     }
 
     // Getter meetodid
-    public int getMust() {
+    public int getÕige() {
         return õige;
     }
 
-    public int getValge() {
+    public int getVale() {
         return vale;
     }
 
@@ -27,7 +27,7 @@ public class Tagasiside {
 
     @Override
     public String toString() {
-        return "Must: " + õige + ", Valge: " + vale + ", Tühi: " + tühi;
+        return "Õige: " + õige + ", Vale: " + vale + ", Tühi: " + tühi;
     }
 
     public void prindiTagasiside(boolean positsiooniline) {
