@@ -1,4 +1,8 @@
-// Mängija klass
+package oopsprojekt.projekt_mottemeister;
+
+import java.util.List;
+import java.util.ArrayList;
+
 public class Mängija {
     private String nimi;
 
@@ -10,3 +14,4 @@ public class Mängija {
         return nimi;
     }
 }
+
