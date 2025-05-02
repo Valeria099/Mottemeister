@@ -1,3 +1,5 @@
+package oopsprojekt.projekt_mottemeister;
+
 import java.util.List;
 
 public class Tagasiside {
@@ -13,11 +15,11 @@ public class Tagasiside {
     }
 
     // Getter meetodid
-    public int getÕige() {
+    public int getMust() {
         return õige;
     }
 
-    public int getVale() {
+    public int getValge() {
         return vale;
     }
 
@@ -27,7 +29,7 @@ public class Tagasiside {
 
     @Override
     public String toString() {
-        return "Õige: " + õige + ", Vale: " + vale + ", Tühi: " + tühi;
+        return "Must: " + õige + ", Valge: " + vale + ", Tühi: " + tühi;
     }
 
     public void prindiTagasiside(boolean positsiooniline) {
