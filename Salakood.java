@@ -1,4 +1,6 @@
-// Salakood klass
+package oopsprojekt.projekt_mottemeister;
+
+import javafx.scene.paint.Color;
 import java.util.List;
 
 public class Salakood {
