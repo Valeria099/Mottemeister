@@ -7,15 +7,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.control.Tooltip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -243,7 +241,15 @@ public class MangulaudVaade {
             varviRing.setStroke(Color.DARKGRAY);
 
             StackPane klikitavRing = new StackPane(varviRing);
-            klikitavRing.setCursor(Cursor.HAND); // hiire muutus visuaalselt klikitavaks
+            klikitavRing.setCursor(Cursor.HAND);
+
+            // Nupule sarnane stiil
+            klikitavRing.setStyle(
+                    "-fx-background-color: lightgrey; " +
+                            "-fx-background-radius: 50%; " +
+                            "-fx-padding: 5px; " +
+                            "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2);"
+            );
 
             klikitavRing.setOnMouseClicked(e -> {
                 if (hetkeValikud.size() < varvideArv) {
@@ -260,6 +266,29 @@ public class MangulaudVaade {
             varviRida.getChildren().add(klikitavRing);
         }
 
+        // Info nupp koos tooltipiga
+        Button infoNupp = new Button("?");
+        infoNupp.setFocusTraversable(false);
+        infoNupp.setStyle(
+                "-fx-font-weight: bold; " +
+                        "-fx-background-radius: 50%; " +
+                        "-fx-min-width: 30px; " +
+                        "-fx-min-height: 30px; " +
+                        "-fx-max-width: 30px; " +
+                        "-fx-max-height: 30px;"
+        );
+
+        Tooltip infoTooltip = new Tooltip(
+                "Nupu lauale asetamiseks vajuta vastava värvi nuppu.\n" +
+                        "Kui tahad nuppu tagasi võtta, vajuta nuppu \"Tagasi\".\n" +
+                        "Kui kogu värvidrida täidetud ja oled kindel oma arvamuses, vajuta nuppu \"Kinnita\".\n" +
+                        "Selle peale antakse sulle tagasiside väikestes ringides ning kui salakood ei ole veel arvatud, liigutakse järgmisele mängureale."
+        );
+        infoTooltip.setShowDelay(Duration.ZERO);  // Siin määrad, et delay puudub
+
+        infoNupp.setTooltip(infoTooltip);
+
+
         // Tagasi nupp
         Button tagasiNupp = new Button("Tagasi");
         tagasiNupp.setOnAction(e -> {
@@ -267,28 +296,30 @@ public class MangulaudVaade {
             if (viimane >= 0) {
                 suuredRingid[aktiivneRidaIndeks][viimane].setFill(Color.LIGHTGRAY);
                 hetkeValikud.remove(viimane);
-                Logija.logi("Eemaldati "+viimane);
+                Logija.logi("Eemaldati " + viimane);
             }
             if (hetkeValikud.size() < varvideArv) {
                 kinnitaNupp.setDisable(true);
             }
         });
 
+        // Katkesta nupp
         Button katkestaNupp = new Button("Katkesta");
         katkestaNupp.setOnAction(e -> {
-            Platform.exit(); // Sulgeb JavaFX rakenduse viisakalt
+            Platform.exit();
         });
 
         // Kinnita nupp
         kinnitaNupp = new Button("Kinnita");
         kinnitaNupp.setDisable(true);
         kinnitaNupp.setOnAction(e -> kinnitaPakkumine());
-        varviRida.getChildren().add(kinnitaNupp);
-        varviRida.getChildren().add(tagasiNupp);
-        varviRida.getChildren().add(katkestaNupp);
+
+        varviRida.getChildren().addAll(kinnitaNupp, tagasiNupp, katkestaNupp, infoNupp);
 
         return varviRida;
     }
+
+
 
     private HBox looTagasisideJuhend() {
         HBox juhendBox = new HBox(15);
