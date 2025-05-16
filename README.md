@@ -67,6 +67,18 @@ Eesmärk: Mottemeister on peaklass, mis käivitab mängu ja haldab kasutajaliide
 Olulisemad meetodid:
 main(String[] args) - peamine meetod, mis käivitab mängu, küsib kasutajalt sisendeid (nagu nimi, mängu seaded jne) ja haldab mängu tsüklit.
 
+*MangulaudVaade klass*
+Eesmärk: See klass loob ja haldab graafilist mänguliidest JavaFX-is mängu "Mõttemeister" jaoks. See sisaldab kogu mängulaua kasutajaliidest, kus mängija valib värve, esitab pakkumisi ja saab visuaalset tagasisidet. Klass haldab värvivaliku rida (värvid, nupud nagu Kinnita, Tagasi, Katkesta, Info), mänguridade kuvamist ja värvide sisestamist, tagasiside ringide värvimist vastavalt pakkumise ja salakoodi võrdlusele, mängu edenemise juhtimist (järgmisele reale liikumine, mängu lõpu tuvastamine), peidetud salakoodi kuvamist (hallid ringid), värvide ja stringide vahelisi teisendusi. Lihtsamalt öeldes: see on mängu põhiline kasutajaliides, mis võimaldab mängijal värve valida, pakkumisi teha ja tagasisidet saada, juhtides kogu mängulaua graafilist käitumist.
+
+*MottemeisterFX klass*
+Eesmärk: See klass käivitab JavaFX-is mängu "Mõttemeister" algseadistuste graafilise kasutajaliidese. Klass kuvab mängijale akna, kus saab sisestada mängija nime, valida värvide arvu, määrata, kas värvid võivad korduda, ja valida tagasiside tüüp. Lisaks genereerib see valikute põhjal mängu salakoodi ja avab mängulaua vaate (MangulaudVaade), kust mäng algab.
+
+*Logija klass*
+Eesmärk: See klass vastutab mängu käigus tekkivate sündmuste ja tegevuste logimise eest faili. Logija kirjutab ajatempli ja sõnumi kasutaja kodukataloogi all asuvasse "Mõttemeister/logi.txt" faili, võimaldades hiljem mängu kulgu ja vigu analüüsida.
+
+*ManguSeadistus klass*
+See klass hoiab kokku ja edastab mängu algseadistusi, mida kasutaja on määranud. Seal säilitatakse mängija nimi, värvide arv, korduste lubatavus, tagasiside tüüp ning kasutatavad värvid. Klass toimib mängu konfiguratsiooni hoidjana ja võimaldab neile seadistustele mugavalt ligi pääseda.
+
 **Projekti protsessi kirjeldus**
 1. Idee genereerimine - Esimesena pidasime plaani, mida võiks projektitööna koostada. Püüdsime silmas pidada ka seda, et projekti saaks edasi rakendada ka projektitöö II etapis.
 2. Genereeritud idee kirjeldamine, mida programm peab tegema, millised võiksid olla erinevad versioonid mängust.
@@ -75,12 +87,19 @@ main(String[] args) - peamine meetod, mis käivitab mängu, küsib kasutajalt si
 5. Programmitöö testimine.
 Kõik etapid said mitmeid kordi omavahel arutatud ja nõu peetud.
 Protsessiliselt Victoria kirjutas põhjad klassidesse ja Anne tegeles peamiselt tagasiside klassi korrektselt tööle saamisega, nii et oleksid võimalikud nii kõikvõimalikud nuppude värvide valikute lahendused kui ka tagasisisde andmise võimalused.
+Graafikaliidese testimiseks:
+1. Panime kirja, mida me graafiliselt tahaksime lahendada
+2. Jagasime töö kasutajalt info küsimise osaks ja mängulaua vaate loomiseks
+3. Jagasime vastavalt töö ning moodustasime vastavalt uued klassid
+4. Lisaks lõime ka klassi Logija.
+Graafikaliidese korral Victoria tegeles kasutajalt andemte loomise graafilise lahendusega ja Anne tegeles MangulaudVaade loomisega ning sinna mänguloogika lisamisega. Ühtlasi pidasime plaani, kuidas saaks rakendada ka faili lugemist. Selleks tegime logimise loogika ja faili kirjutamise.
 
 **Ajakulu**
-Ajakulu - Victorial kulus umbkaudu 15h, Anne kulutas projektile aega umbes 25h.
+Ajakulu - Victorial kulus umbkaudu 15h, Anne kulutas projektile aega umbes 25h, graafilisele mängulaua vaatele ja mänguloogika töölesaamisele graafikaga koos ligukaudu 20h.
 
 **Peamised mured**
 Kõige keerukam oli tabada, kuidas kõige efektiivsemalt saada tagasiside tööle mõlema tagasisidestamise variandi korral - nii näidates tagasisidet iga nupu kohta eraldi, ja teisel juhul kui antakse tagasiside, aga mitte näidates, millise nupu kohta tagasiside käib. Samuti osutas vastupanu juhus, kui oli värvide kordusi, et ka siis oskaks kood tagasisidestada mõlemal juhul õigesti.
+Graafikaliidese loomisel oli kõige suurem väljakutse Annel, et nuppudel valitud värv hakkaks korrektselt mängulaual nupuauke täitma ja et kogu mänguloogika oleks paigas.
 
 **Hinnang**
 Koostöö toimis ja programm hakkas tööle nii nagu ootasime. 
